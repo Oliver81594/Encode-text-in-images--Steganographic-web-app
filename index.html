@@ -6,28 +6,65 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
       <title>Steganography</title>
+      <style>
+        .length{
+          max-width: 50%;
+        }
+        form{
+          position: relative;
+          left: 2%;
+        }
+      </style>
   </head>
   <body>
-    <div>
-      <input type="text" id="textField" placeholder="O polnoci na vrsku">
-      <button id="start" onclick="main()">Start</button>
-      <a href="" id="download" download>Download</a>
+    <br>
+    <form>
+      <div class="form-floating length">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Message or text</label>
+      </div>
+      <br>
       <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)">
-
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="decode_check">
-        <label class="form-check-label" for="flexRadioDefault1">
-          Decode
-        </label>
+      <br>
+      <br>
+      <div id="checks">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="decode_check">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Decode
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="encode_check">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Encode
+          </label>
+        </div>
+        <div id="encode_div">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+            <label class="form-check-label" for="flexCheckDefault">
+              Use encryption
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="password_check">
+            <label class="form-check-label" for="flexCheckDefault">
+              Use password
+            </label>
+          </div>
+          <div class="form-floating length" id="password_div">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+        </div>
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="encode_check">
-        <label class="form-check-label" for="flexRadioDefault2">
-          Encode
-        </label>
-      </div>
-    </div>
-
+    <form>
+    <br>
+    <button id="start" onclick="main()" type="button">Start</button>
+    <a href="" id="download" download>Download</a>
+    <br>
+    <br>
     <div class="alert alert-warning" role="alert" style="width:50%">
       Only JPG pictures are supported
     </div>
@@ -39,15 +76,20 @@
       Your browser does not support the HTML5 canvas tag.
     </canvas>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
       //special thanks to this question which helped me fix a bug that almost made me quit project:
       //https://stackoverflow.com/questions/8388106/png-rgb-transformation-related-to-alpha-in-getimagedata
+      //And also theese:
+      //https://stackoverflow.com/questions/19454310/stop-form-refreshing-page-on-submit
+      //https://stackoverflow.com/users/1548301/vicky-gonsalves
+
       const original_canvas = document.getElementById('original_canvas');
       const edited_canvas = document.getElementById('edited_canvas');
       const orig_ctx = original_canvas.getContext('2d');
       const edit_ctx = edited_canvas.getContext('2d');
       var start = document.getElementById("start");
-      var textfield = document.getElementById("textField");
+      var textfield = document.getElementById("floatingTextarea2");
       var message = "";
       var download = document.getElementById("download");
 
@@ -159,11 +201,15 @@
           }
         }
         console.log(toText(message));
+        //have to add a component that shows the message in the UI
       }
       
-      function main(){
-        encode_check = document.getElementById("encode_check");
-        decode_check = document.getElementById("decode_check");
+      var encode_check = document.getElementById("encode_check");
+      var decode_check = document.getElementById("decode_check");
+      var encryption_check = document.getElementById("encryption_check");
+      var password_check = document.getElementById("password_check");
+
+      function main(){                            //main function that checks if everything is filled and then calls either encode or decode funcions
         if(decode_check.checked == true){
           decode();
         }
@@ -177,6 +223,28 @@
         }
       }
 
+
+      $('#encode_div').hide();
+      $('#password_div').hide();
+
+      function change(){                            //simple function that hides or shows elements based on checks
+        if(decode_check.checked == true){
+          $('#encode_div').hide();
+        }
+        else{
+          if(encode_check.checked == true){
+            $('#encode_div').show();
+            if(password_check.checked == true){
+              $('#password_div').show();
+            }
+            else{$('#password_div').hide();}
+          }
+          else{$('#encode_div').hide();}
+        }
+      }
+
+      document.getElementById("checks").addEventListener("click",change);
+      
     </script>
 
   </body>
