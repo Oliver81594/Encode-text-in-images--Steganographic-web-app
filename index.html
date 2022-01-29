@@ -58,6 +58,10 @@
             <label for="floatingPassword">Password</label>
           </div>
         </div>
+        <div id="decode_div">
+          <h3 class="display-6">Message:</h3>
+          <p id="message_paragraph"></p>
+        </div>
       </div>
     <form>
     <br>
@@ -178,6 +182,7 @@
       }
 
       function decode(){
+        message_paragraph = document.getElementById("message_paragraph");
         message="";
         counter = 0;
         let imgData = orig_ctx.getImageData(0, 0, original_canvas.width,original_canvas.height);
@@ -200,8 +205,7 @@
             break;
           }
         }
-        console.log(toText(message));
-        //have to add a component that shows the message in the UI
+        message_paragraph.innerHTML = toText(message);
       }
       
       var encode_check = document.getElementById("encode_check");
@@ -226,12 +230,15 @@
 
       $('#encode_div').hide();
       $('#password_div').hide();
+      $('#decode_div').hide();
 
       function change(){                            //simple function that hides or shows elements based on checks
         if(decode_check.checked == true){
           $('#encode_div').hide();
+          $('#decode_div').show();
         }
         else{
+          $('#decode_div').hide();
           if(encode_check.checked == true){
             $('#encode_div').show();
             if(password_check.checked == true){
@@ -244,7 +251,10 @@
       }
 
       document.getElementById("checks").addEventListener("click",change);
-      
+    //napady na pridanie:
+    //refresh button
+    //ukazovanie len zmenseneho obrazka
+    //
     </script>
 
   </body>
