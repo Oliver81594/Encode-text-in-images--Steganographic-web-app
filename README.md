@@ -26,4 +26,4 @@ More than 120 lines of Illiad
 2. Encryption
 3. Password protection
 
-If you have any ideas or see any bugs please contact me via email on: olimail111@gmail.com
+If you have any ideas, see any bugs or want to contribute please contact me via email on: olimail111@gmail.com
