@@ -20,3 +20,10 @@ Then I cycle through all rgb values and after I encounter one ending with 5 I st
 <img src="./examples/edited1.png">  
 *Message:*  
 More than 120 lines of Illiad
+
+### Things to do:  
+1. Show how much more space you have for your text based on image size
+2. Encryption
+3. Password protection
+
+If you have any ideas or see any bugs please contact me via email on: olimail111@gmail.com
