@@ -17,6 +17,12 @@
         #message_paragraph{
           max-width: 90%;
         }
+        img{
+          max-width: 35%;
+        }
+        body{
+          max-width: 98%;
+        }
       </style>
   </head>
   <body>
@@ -78,9 +84,10 @@
         <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
       </svg>
         Passwords and encryption are not supported in this version
-      
     </div>
 
+    <img src="" alt="" id="original_image_element">
+    <img src="" alt="" id="edited_image_element">
     <canvas id="original_canvas">
       Your browser does not support the HTML5 canvas tag.
     </canvas>
@@ -105,9 +112,13 @@
       var message = "";
       var download = document.getElementById("download");
 
-      var loadFile = function(event){                                     //
+      
+
+      var loadFile = function(event){                                     
 	      var uploaded_image = new Image();
-	      uploaded_image.src = URL.createObjectURL(event.target.files[0]);  //
+        let original_image_element = document.getElementById("original_image_element");       //uploaded and result image will be shown in image element
+	      uploaded_image.src = URL.createObjectURL(event.target.files[0]);                      //while the canvases will be hidden because if they were scaled it would destroy the message
+        original_image_element.src = uploaded_image.src;                                      //thus only image elements will be scaled
         uploaded_image.onload = function (){
           let client_width = $(document).width();
           let client_height = $(document).height();
@@ -186,8 +197,9 @@
           edited_canvas.height = imgData.height;
           edit_ctx.putImageData(imgData, 0, 0);
           var jpg = edited_canvas.toDataURL('image/png', 1.0);
-          console.log(jpg);
+          let edited_image_element = document.getElementById("edited_image_element");
           download.href = jpg;
+          edited_image_element.src = jpg;
         }
       }
 
@@ -241,6 +253,8 @@
       $('#encode_div').hide();
       $('#password_div').hide();
       $('#decode_div').hide();
+      $(original_canvas).hide();
+      $(edited_canvas).hide();
 
       function change(){                            //simple function that hides or shows elements based on checks
         if(decode_check.checked == true){
@@ -263,8 +277,7 @@
       document.getElementById("checks").addEventListener("click",change);
     //napady na pridanie:
     //refresh button
-    //ukazovanie len zmenseneho obrazka
-    //
+    //ukazovanie podla toho ci je zariadenie na vysku alebo sirku
     </script>
 
   </body>
