@@ -144,7 +144,6 @@
           if(input[i] == "2"){                                //divides string by spaces
             asci = parseInt(binary, 2);                       //binary to ASCI code
             output += String.fromCharCode(asci);              //ASCI code to char
-            console.log(asci);
             binary = "";
           }
           else{
@@ -174,7 +173,6 @@
 
       function encode(){
         message = toBinary(textfield.value);
-        console.log(message);
         let imgData = orig_ctx.getImageData(0, 0, original_canvas.width,original_canvas.height);
         if(message.length > imgData.data.length){
           alert("Message is too big.");
@@ -192,7 +190,6 @@
               a += 4;
             }       
           }
-          console.log(imgData);
           edited_canvas.width = imgData.width;
           edited_canvas.height = imgData.height;
           edit_ctx.putImageData(imgData, 0, 0);
@@ -208,7 +205,6 @@
         message="";
         counter = 0;
         let imgData = orig_ctx.getImageData(0, 0, original_canvas.width,original_canvas.height);
-        console.log(imgData);
         for(i=0; i < imgData.data.length;i+=4){
           if(imgData.data[i]%10 == 5){
             counter += 1;
@@ -223,7 +219,6 @@
             if(message.includes("5")==true){
               message = message.substring(0,message.indexOf('5'));
             }
-            console.log(message);
             break;
           }
         }
@@ -275,9 +270,6 @@
       }
 
       document.getElementById("checks").addEventListener("click",change);
-    //napady na pridanie:
-    //refresh button
-    //ukazovanie podla toho ci je zariadenie na vysku alebo sirku
     </script>
 
   </body>
