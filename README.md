@@ -14,6 +14,9 @@ Decoding works very similarly. Image is uploaded, sent into canvas, *getImageDat
 Then I cycle through all rgb values and after I encounter one ending with 5 I start recording binary numbers. After another 5 appears I stop and convert binary into message.
 
 ### Examples:
-*Before image:* 
-*After image:*
-*Message*  
+*Before image:*  
+<img src="./img/original1.jpg">  
+*After image:*  
+<img src="./img/edited.png">  
+*Message:*  
+More than 120 lines of Illiad
