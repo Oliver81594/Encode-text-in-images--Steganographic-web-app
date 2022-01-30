@@ -17,6 +17,6 @@ Then I cycle through all rgb values and after I encounter one ending with 5 I st
 *Before image:*  
 <img src="./examples/original1.jpg">  
 *After image:*  
-<img src="./examples/edited.png">  
+<img src="./examples/edited1.png">  
 *Message:*  
 More than 120 lines of Illiad
