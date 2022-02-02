@@ -19,7 +19,7 @@ Then I cycle through all rgb values and after I encounter one ending with 5 I st
 *After image:*  
 <img src="./examples/edited1.png">  
 *Message:*  
-Nearly than 3500 lines of Illiad
+Nearly than 3500 lines of Illiad (by Word line counting)
 
 ### Things to do:  
 1. Show how much more space you have for your text based on image size
