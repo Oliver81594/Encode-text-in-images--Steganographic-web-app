@@ -1,23 +1,25 @@
 # Encode-text-in-images--Steganographic-web-app
-This project is a responsive web app that can encode (decode too, if it was encoded the same way) a message/text into a picture.  
-
-### What does it do:
-The main function of this app is to hide or uncover, encode or decode any information in form of text into an image. Once the information is encoded it is impossible to tell the difference
-between original and edited picture. In the end of this README you will find two images, original and one with hidden message.
+Steganography is the practise of concealing information in everyday objects. This particular web application can encode text form information into any image. After the process ends another picture is returned and prepared for download. When examined by naked eye no differences can be spotted which ensures that image will not attract attention and the message stays hidden. After the chosen person receives the image, he/she can decode the message with the same application.  
 
 ### Try it out:
-If you want you can try it out [click here](https://oliver81594.github.io/Encode-text-in-images--Steganographic-web-app/)
+If you want you can try it out [here](https://oliver81594.github.io/Encode-text-in-images--Steganographic-web-app/)
 
 ### How it works:
 #### *Encoding:*
 For easier storing, the message is converted as follows: message => characters => ASCI codes => binary  
 After the image is uploaded it is drawn into a canvas from which the picture information is extracted by javascript function *getImageData*. 
-Then each pixels rgb values are changed either to zero or 1 based on binary message. I tried to change the alpha value as well but it resulted in image correction which destroyed the message.  
-The first and last rgb values (before and after message) are 5. This makes it easeier to decode because then javascript will not try to decode things that aren't messages.  
+Then each pixels rgb values are changed either to 0 or 1 based on binary message. I tried to change the alpha value as well but it resulted in image correction which destroyed the message.  
+The first and last rgb values (before and after message) are 5. This makes it easier to decode because then javascript will not try to decode things that aren't messages.  
 
 #### *Decoding:*  
 Decoding works very similarly. Image is uploaded, sent into canvas, *getImageData*...  
 Then I cycle through all rgb values and after I encounter one ending with 5 I start recording binary numbers. After another 5 appears I stop and convert binary into message.
+
+### Compatibility and limitations:
+#### *Compatibility:*  
+This is web-based application which means that it will run on any device that has internet browser. As far as implemented features go, all up to date browser should work just fine. As for image types all common ones such as .jpg, .png or .gif should be supported. 
+#### *Limitations:*  
+Since not all characters take up the same amount of space it is impossible to calculate maximum length of message beforehand. You can calculate the approximate number of free bits like this: (will be added soon) where x and y are width and height of the image. 
 
 ### Examples:
 *Before image:*  
