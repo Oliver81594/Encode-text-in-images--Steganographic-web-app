@@ -1,6 +1,12 @@
 # Encode-text-in-images--Steganographic-web-app
 This project is a responsive web app that can encode (decode too, if it was encoded the same way) a message/text into a picture.  
-It changes only the last digits of rgb value of each pixel. 
+
+### What does it do:
+The main function of this app is to hide or uncover, encode or decode any information in form of text into an image. Once the information is encoded it is impossible to tell the difference
+between original and edited picture. In the end of this README you will find two images, original and one with hidden message.
+
+### Try it out:
+If you want you can try it out [click here](https://oliver81594.github.io/Encode-text-in-images--Steganographic-web-app/)
 
 ### How it works:
 #### *Encoding:*
@@ -19,7 +25,10 @@ Then I cycle through all rgb values and after I encounter one ending with 5 I st
 *After image:*  
 <img src="./examples/edited1.png">  
 *Message:*  
-Nearly than 3500 lines of Illiad (by Word line counting)
+Nearly than 3500 lines of Illiad (by Word line counting)  
+*Conclusion:*
+As you can see there are no visible changes which means that no one is able to say if a picture hides any information in it. The only way to find out is to try to decode it.
+
 
 ### Things to do:  
 1. Show how much more space you have for your text based on image size
